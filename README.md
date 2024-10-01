@@ -57,10 +57,5 @@ Há 4 pastas que seguem da seguinte forma:
 Faça o Download do JOGO.apk no seu celular.
 Execute o APK e siga as instruções de seu telefone.
 
-## 🎓 Referências
-
-Aqui estão as referências usadas no projeto.
-
-1. <https://github.com/iuricode/readme-template>
-2. <https://github.com/gabrieldejesus/readme-model>
-3. <https://creativecommons.org/share-your-work/>
+## 🎓Links
+<a href="[https://www.figma.com/design/oqu6D8AnsQO9fFDGpQdWX3/APOEF?node-id=0-1&amp;node-type=canvas&amp;t=Ly7hNgtEdeeizgr8-0](https://www.figma.com/design/DDVUztB3fZymFXR9PisuJc/Quizz?node-id=0-1&t=5d16dMtS7uXpZ6Q9-1)" rel="nofollow">Figma</a>
