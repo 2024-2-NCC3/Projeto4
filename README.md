@@ -8,7 +8,7 @@
 
 ## Quizzer
 
-## Integrantes: <a href="https://www.linkedin.com/in/leoonaardoferreira/">Leonardo Ferreira</a>, <a href="https://www.linkedin.com/in/victorbarq">Maria Kassandra Alves</a>, <a href="https://www.linkedin.com/in/victorbarq/">Rafaella Morelli</a>, <a href="https://www.linkedin.com/in/victorbarq/">Rodrigo Gama</a>
+## Integrantes: <a href="https://www.linkedin.com/in/leoonaardoferreira/">Leonardo Ferreira</a>, <a href="https://www.linkedin.com/in/victorbarq">Maria Kassandra Alves</a>, <a href="https://www.linkedin.com/in/victorbarq/">Rafaella Morelli</a>, <a href="https://www.linkedin.com/in/rodrigo-gama-b38705231/">Rodrigo Gama</a>
 ## Professores Orientadores: <a href="https://www.linkedin.com/in/victorbarq/">Victor Rossetti</a>
 
 ## Descrição
@@ -57,4 +57,7 @@ Faça o Download do JOGO.apk no seu celular.
 Execute o APK e siga as instruções de seu telefone.
 
 ## 🎓Links
-<a href="[https://www.figma.com/design/oqu6D8AnsQO9fFDGpQdWX3/APOEF?node-id=0-1&amp;node-type=canvas&amp;t=Ly7hNgtEdeeizgr8-0](https://www.figma.com/design/DDVUztB3fZymFXR9PisuJc/Quizz?node-id=0-1&t=5d16dMtS7uXpZ6Q9-1)" rel="nofollow">Figma</a>
+<a href="https://planner.cloud.microsoft/edu.fecap.br/Home/PlanViews/wKtLc2P_WEipnEV6kVMm_mQADhkR?Type=PlanLink&Channel=Link&CreatedTime=638634971339250000" target="_blank">Planner</a>
+<br>
+<a href="https://www.figma.com/board/BbWlQhgzcjYiw3ILuwKeUD/Untitled?node-id=0-1&node-type=canvas&t=NX2VArj6sUvlfcJ2-0" target="_blank">Figma</a>
+
