@@ -14,7 +14,7 @@
 ## Descrição
 
 <p align="center">
-<img src="https://github.com/2024-2-NCC3/Projeto4/blob/main/imagens/GlobalGoals1.png" alt="QuizzODS" border="0" width="500">
+<img src="https://github.com/2024-2-NCC3/Projeto4/blob/main/imagens/GlobalGoals1.png" alt="QuizzODS" border="0" width="480">
   <br>
   App by <a href="http://www.nyphotographic.com/">Quizzer</a> <a rel="license" href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a> <a href="http://pix4free.org/">Pix4free</a>
 </p>
