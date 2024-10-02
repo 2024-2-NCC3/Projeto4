@@ -8,7 +8,7 @@
 
 ## Quizzer
 
-## Integrantes: <a href="https://www.linkedin.com/in/victorbarq/">Leonardo Ferreira</a>, <a href="https://www.linkedin.com/in/victorbarq/">Maria Kassandra Alves</a>, <a href="https://www.linkedin.com/in/victorbarq/">Rafaella Morelli</a>, <a href="https://www.linkedin.com/in/victorbarq/">Rodrigo Santos</a>
+## Integrantes: <a href="https://www.linkedin.com/in/victorbarq/">Leonardo Ferreira</a>, <a href="https://www.linkedin.com/in/victorbarq/">Maria Kassandra Alves</a>, <a href="https://www.linkedin.com/in/victorbarq/">Rafaella Morelli</a>, <a href="https://www.linkedin.com/in/victorbarq/">Rodrigo Gama</a>
 ## Professores Orientadores: <a href="https://www.linkedin.com/in/victorbarq/">Dr. Victor Von Doom</a>
 
 ## Descrição
