@@ -60,3 +60,5 @@ Execute o APK e siga as instruções de seu telefone.
 <a href="https://planner.cloud.microsoft/edu.fecap.br/Home/PlanViews/wKtLc2P_WEipnEV6kVMm_mQADhkR?Type=PlanLink&Channel=Link&CreatedTime=638634971339250000" target="_blank">Planner</a>
 <br>
 <a href="https://www.canva.com/design/DAGSd5gdu5k/Piww_mvYm7RtYqAwP0lYAg/edit?utm_content=DAGSd5gdu5k&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">Canva</a>
+<br>
+<a href="https://docs.google.com/document/d/1Vnd-YXqdxFB6-ElTUlrMPnP4a5rqIqM3aqzEuy8nBuI/edit?usp=sharing" target="_blank">DocsPerguntas</a>
