@@ -64,3 +64,5 @@ Execute o APK e siga as instruções de seu telefone.
 <a href="https://docs.google.com/document/d/1Vnd-YXqdxFB6-ElTUlrMPnP4a5rqIqM3aqzEuy8nBuI/edit?usp=sharing" target="_blank">DocsPerguntas</a>
 <br>
 <a href="https://www.canva.com/design/DAGTTiFJC3s/EIXa9GSsnHs2YGS_XbJCJg/edit?utm_content=DAGTTiFJC3s&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">Logo</a>
+<br>
+<a href="https://docs.google.com/document/d/18spVZmcxFrc1rNuYewJgWxWCsiMkNCUW-EJzgvw94dA/edit?usp=sharing" target="_blank">Resumo GooglePay</a>
