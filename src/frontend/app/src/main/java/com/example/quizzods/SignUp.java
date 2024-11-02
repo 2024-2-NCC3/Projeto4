@@ -15,6 +15,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.button.MaterialButton;
 
+import br.fecap.pi.quizzods.R;
+
 public class SignUp extends AppCompatActivity {
 
     @Override

@@ -13,6 +13,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import br.fecap.pi.quizzods.R;
+
 public class gameplay extends AppCompatActivity {
     private RadioGroup divQuestoes;
     private RadioButton questao1, questao2, questao3, questao4;
