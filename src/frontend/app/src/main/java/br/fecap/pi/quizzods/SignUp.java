@@ -19,8 +19,19 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import br.fecap.pi.quizzods.R;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
 
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
+import android.util.Base64;
+import br.fecap.pi.quizzods.ApiService;
+import br.fecap.pi.quizzods.R;
+import br.fecap.pi.quizzods.TokenManager;
+import br.fecap.pi.quizzods.UpRequest;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -70,10 +81,13 @@ public class SignUp extends AppCompatActivity {
         public boolean insertUser(String username, String email, String senha) {
             SQLiteDatabase db = this.getWritableDatabase();
             try {
+                // Aplica hashing na senha ante de armazenar
+                String hashedPassword = hashPassword(senha);
+
                 ContentValues contentValues = new ContentValues();
                 contentValues.put(COL_2, username);
                 contentValues.put(COL_3, email);
-                contentValues.put(COL_4, senha);
+                contentValues.put(COL_4, hashedPassword); // Armazena a senha
                 long result = db.insert(TABLE_NAME, null, contentValues);
                 Log.d("SQLite", "Inserido: nome: " + username + ", Email: " + email + ", Senha: " + senha);
                 if (result == -1) {
@@ -88,6 +102,23 @@ public class SignUp extends AppCompatActivity {
                 db.close();
             }
         }
+
+        //has para senha
+        private String hashPassword(String password){
+            String SALT = "umsaltounico"; // Salt fixo, para simplificação
+
+            try{
+                KeySpec spec = new PBEKeySpec(password.toCharArray(), SALT.getBytes(), 65536, 128);
+                SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+                byte[] hash = factory.generateSecret(spec).getEncoded();
+
+                //codificação do hash para o armazenamneto
+                return  Base64.encodeToString(hash, Base64.NO_WRAP);
+            }catch (NoSuchAlgorithmException | InvalidKeySpecException e ){
+                throw new RuntimeException("Erro ao hashear senha: " + e.getMessage());
+            }
+        }
+
 
         // Consulta de todos os usuários
         public Cursor getAllUsers() {
@@ -122,13 +153,25 @@ public class SignUp extends AppCompatActivity {
         EditText senha = findViewById(R.id.password_input);
         Button btnConta = findViewById(R.id.btnCriarConta);
 
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(chain -> {
+
+                    TokenManager tokenManager = new TokenManager (this);
+                    String token = tokenManager.getToken();
+                    Request newRequest = chain.request().newBuilder()
+                            .addHeader("Authorization", "Bearer "+ token)
+                            .build();
+                    return chain.proceed(newRequest);
 
 
+                })
+                .build();
 
         // Configuração do Retrofit
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://h6wr2f-3000.csb.app/")
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
                 .build();
 
         ApiService apiService = retrofit.create(ApiService.class);
@@ -144,6 +187,9 @@ public class SignUp extends AppCompatActivity {
                 Toast.makeText(SignUp.this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
                 return;
             }
+            // aplicação do has p senha ficar "segura
+
+
 
             Toast.makeText(SignUp.this, "Seu username é " + usernameText, Toast.LENGTH_SHORT).show();
 
@@ -154,12 +200,24 @@ public class SignUp extends AppCompatActivity {
 
 
             // Fazendo a requisição ao servidor
-            Call<UpRequest.SignUpResponse> call = apiService.signUp(signUpRequest);
+            Call<UpRequest.SignUpResponse> call = apiService.  signUp(signUpRequest);
             call.enqueue(new Callback<UpRequest.SignUpResponse>() {
                 @Override
                 public void onResponse(Call<UpRequest.SignUpResponse> call, Response<UpRequest.SignUpResponse> response) {
                     if (response.isSuccessful() && response.body() != null) {
+                        // Obtém o token da resposta
+                        String token = response.body().getToken();
+
+
+                        TokenManager tokenManager = new TokenManager(SignUp.this);
+                        tokenManager.saveToken(token); // Salva o token no SharedPreferences
+
+
+
                         Toast.makeText(SignUp.this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show();
+
+
+
 
                         // Salvando os dados no banco de dados localmente
                         boolean isInserted = dbHelper.insertUser(usernameText, emailText, senhaText);
@@ -193,4 +251,4 @@ public class SignUp extends AppCompatActivity {
             return insets;
         });
     }
-    }
+}
