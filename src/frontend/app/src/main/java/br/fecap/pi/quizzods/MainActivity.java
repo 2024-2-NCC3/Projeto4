@@ -12,8 +12,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import br.fecap.pi.quizzods.R;
-
 public class MainActivity extends AppCompatActivity {
     private Button createAccountBtn;
     private EditText usernameInput;
@@ -28,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         usernameInput = findViewById(R.id.username_input);
         passwordInput = findViewById(R.id.password_input);
-        loginBtn = findViewById(R.id.login_btn);
+        loginBtn = findViewById(R.id.btnAlterarDados);
 
        /* loginBtn.setOnClickListener(v -> {
                     String username = usernameInput.getText().toString();
@@ -36,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.i("Login", "Username: " + username + ", Password: " + password);
                 }); */
 
-        createAccountBtn = findViewById(R.id.create_account_btn);
+        createAccountBtn = findViewById(R.id.btnDeletarConta);
         createAccountBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
