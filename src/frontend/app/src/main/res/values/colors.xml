@@ -2,4 +2,22 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="ods1">#e5243b</color>
+    <color name="ods2">#dda63a</color>
+    <color name="ods3">#4c9f38</color>
+    <color name="ods4">#c5192d</color>
+    <color name="ods5">#ff3a21</color>
+    <color name="ods6">#26bde2</color>
+    <color name="ods7">#fcc30b</color>
+    <color name="ods8">#a21942</color>
+    <color name="ods9">#fd6925</color>
+    <color name="ods10">#dd1367</color>
+    <color name="ods11">#fd9d24</color>
+    <color name="ods12">#bf8b2e</color>
+    <color name="ods13">#3f7e44</color>
+    <color name="ods14">#0a97d9</color>
+    <color name="ods15">#56c02b</color>
+    <color name="ods16">#00689d</color>
+    <color name="ods17">#19486a</color>
+
 </resources>
