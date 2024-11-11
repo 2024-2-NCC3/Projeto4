@@ -1,8 +1,12 @@
 package br.fecap.pi.quizzods;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +20,8 @@ public class menuJogo extends AppCompatActivity {
 
     private Button btnJogar;
     private Button btnCreditos;
+    private ImageView imageUsuario;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +31,9 @@ public class menuJogo extends AppCompatActivity {
 
         btnCreditos = findViewById(R.id.btnCreditos);
         btnJogar = findViewById(R.id.btnJogar);
+        imageUsuario = findViewById(R.id.imageUsuario);
+
+
 
 
         btnCreditos.setOnClickListener(v -> {
@@ -37,10 +46,32 @@ public class menuJogo extends AppCompatActivity {
             startActivity(intent);
         });
 
+      imageUsuario.setOnClickListener(new View.OnClickListener(){
+          public void onClick(View v){
+              Intent intent = new Intent (menuJogo.this, deletarUsuario.class);
+              startActivity(intent);
+
+          }
+
+
+
+
+
+
+
+      });
+
+
+
+
+
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+
     }
 }

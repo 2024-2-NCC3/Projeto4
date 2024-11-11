@@ -16,7 +16,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name="com.example.quizzods.DeletarUsuario"
+            android:name=".deletarUsuario"
             android:exported="false" />
         <activity
             android:name=".gameplay"

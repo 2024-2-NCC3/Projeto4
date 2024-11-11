@@ -9,7 +9,14 @@ import retrofit2.http.POST;
 public interface ApiService {
     @POST("/criarUsuario")
 
+
     Call<UpRequest.SignUpResponse> signUp(@Body UpRequest signUpRequest);
+
+    @POST("/login")
+   Call<UpRequest.LoginResponse> login(@Body UpRequest.LoginRequest loginRequest);
+
+    //Call<UpRequest.LoginResponse> login(@Body UpRequest.LoginRequest loginRequest);  // Tipos devem corresponder às classes que capturam dados
+
 }
 
 

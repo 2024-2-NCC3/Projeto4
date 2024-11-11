@@ -51,7 +51,7 @@
         app:layout_constraintVertical_bias="0.6"/>
 
     <Button
-        android:id="@+id/btnAlterarDados"
+        android:id="@+id/btnEntrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="13dp"
@@ -66,7 +66,7 @@
         />
 
     <Button
-        android:id="@+id/btnDeletarConta"
+        android:id="@+id/btnCriar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="13dp"

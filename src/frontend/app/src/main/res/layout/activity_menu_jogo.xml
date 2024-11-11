@@ -56,5 +56,18 @@
         android:layout_height="wrap_content"
         android:text="CRÉDITOS" />
 
+    <ImageView
+        android:id="@+id/imageUsuario"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="314dp"
+        android:layout_marginBottom="26dp"
+        android:background="#c3f584"
+        app:srcCompat="@drawable/baseline_person_24"
+
+        />
+
 
 </RelativeLayout>

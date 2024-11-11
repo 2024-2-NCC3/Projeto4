@@ -41,103 +41,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class SignUp extends AppCompatActivity {
 
     // DBHelper interno para gerenciamento do banco de dados
-    private static class DBHelper extends SQLiteOpenHelper {
-        private static final String DATABASE_NAME = "UserDB.db";
-        private static final String TABLE_NAME = "users";
-        private static final String COL_1 = "ID";
-        private static final String COL_2 = "username";
-        private static final String COL_3 ="email";
-        private static final String COL_4 ="senha";
+
+
         private Context context;
-
-        public DBHelper(Context context) {
-            super(context, DATABASE_NAME, null, 1);
-            this.context = context;
-        }
-
-
-
-        @Override
-        public void onCreate(SQLiteDatabase db) {
-            try {
-                db.execSQL("CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, email TEXT, senha TEXT)");
-                Toast.makeText(context, "Banco de dados criado com sucesso!", Toast.LENGTH_SHORT).show();
-            } catch (SQLException e) {
-                Toast.makeText(context, "Erro ao criar o banco de dados: " + e.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        }
-
-        @Override
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            try {
-                db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
-                onCreate(db);
-            } catch (SQLException e) {
-                Toast.makeText(context, "Erro ao atualizar o banco de dados: " + e.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        }
-
-        // Inserção de usuário com tratamento de erro
-        public boolean insertUser(String username, String email, String senha) {
-            SQLiteDatabase db = this.getWritableDatabase();
-            try {
-                // Aplica hashing na senha ante de armazenar
-                String hashedPassword = hashPassword(senha);
-
-                ContentValues contentValues = new ContentValues();
-                contentValues.put(COL_2, username);
-                contentValues.put(COL_3, email);
-                contentValues.put(COL_4, hashedPassword); // Armazena a senha
-                long result = db.insert(TABLE_NAME, null, contentValues);
-                Log.d("SQLite", "Inserido: nome: " + username + ", Email: " + email + ", Senha: " + senha);
-                if (result == -1) {
-                    throw new SQLException("Erro ao inserir os dados");
-                }
-                Toast.makeText(context, "Usuário inserido com sucesso!", Toast.LENGTH_SHORT).show();
-                return true;
-            } catch (SQLException e) {
-                Toast.makeText(context, "Erro ao inserir no banco de dados: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                return false;
-            } finally {
-                db.close();
-            }
-        }
-
-        //has para senha
-        private String hashPassword(String password){
-            String SALT = "umsaltounico"; // Salt fixo, para simplificação
-
-            try{
-                KeySpec spec = new PBEKeySpec(password.toCharArray(), SALT.getBytes(), 65536, 128);
-                SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
-                byte[] hash = factory.generateSecret(spec).getEncoded();
-
-                //codificação do hash para o armazenamneto
-                return  Base64.encodeToString(hash, Base64.NO_WRAP);
-            }catch (NoSuchAlgorithmException | InvalidKeySpecException e ){
-                throw new RuntimeException("Erro ao hashear senha: " + e.getMessage());
-            }
-        }
-
-
-        // Consulta de todos os usuários
-        public Cursor getAllUsers() {
-            SQLiteDatabase db = this.getReadableDatabase();
-            Cursor res = null;
-            try {
-                res = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
-                if (res == null) {
-                    throw new SQLException("Erro ao consultar os dados");
-                }
-                return res;
-            } catch (SQLException e) {
-                Toast.makeText(context, "Erro ao consultar o banco de dados: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                return null;
-            }
-        }
-    }
-
-    DBHelper dbHelper;
+        DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -176,8 +83,6 @@ public class SignUp extends AppCompatActivity {
 
         ApiService apiService = retrofit.create(ApiService.class);
 
-
-
         // Listener para o botão de criar conta
         btnConta.setOnClickListener(v -> {
             String usernameText = username.getText().toString();
@@ -187,8 +92,6 @@ public class SignUp extends AppCompatActivity {
                 Toast.makeText(SignUp.this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
                 return;
             }
-            // aplicação do has p senha ficar "segura
-
 
 
             Toast.makeText(SignUp.this, "Seu username é " + usernameText, Toast.LENGTH_SHORT).show();
@@ -198,13 +101,14 @@ public class SignUp extends AppCompatActivity {
 
 
 
-
             // Fazendo a requisição ao servidor
             Call<UpRequest.SignUpResponse> call = apiService.  signUp(signUpRequest);
             call.enqueue(new Callback<UpRequest.SignUpResponse>() {
                 @Override
                 public void onResponse(Call<UpRequest.SignUpResponse> call, Response<UpRequest.SignUpResponse> response) {
                     if (response.isSuccessful() && response.body() != null) {
+
+
                         // Obtém o token da resposta
                         String token = response.body().getToken();
 
@@ -219,8 +123,10 @@ public class SignUp extends AppCompatActivity {
 
 
 
+
                         // Salvando os dados no banco de dados localmente
-                        boolean isInserted = dbHelper.insertUser(usernameText, emailText, senhaText);
+                        String salt = "valor de salt";
+                        boolean isInserted = dbHelper.insertUser(usernameText, emailText, senhaText, salt);
                         if (isInserted) {
                             Toast.makeText(SignUp.this, "Dados salvos localmente", Toast.LENGTH_SHORT).show();
                         }
