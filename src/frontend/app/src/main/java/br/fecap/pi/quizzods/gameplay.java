@@ -8,7 +8,7 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.core.content.ContextCompat;
+import java.util.Collections;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +26,7 @@ public class gameplay extends AppCompatActivity {
     private int idRespostaCorreta = R.id.questao1;
     private TextView questaoNumero, questaoTexto;
     private TextView vidasRestantes;
+    private TextView pontos;
     private RelativeLayout quadradoODS;
 
 
@@ -114,8 +115,12 @@ public class gameplay extends AppCompatActivity {
                  1, 16)
     );
 
+
+    private int pontosTotais = 0;
+    private int sequencia = 0;
     private int numeroQuestao = 0;
     private int vidas = 3;
+
 
 
 
@@ -126,6 +131,7 @@ public class gameplay extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_gameplay);
 
+        Collections.shuffle(questoes);
         divQuestoes = findViewById(R.id.divQuestoes);
         questao1 = findViewById(R.id.questao1);
         questao2 = findViewById(R.id.questao2);
@@ -134,6 +140,7 @@ public class gameplay extends AppCompatActivity {
         vidasRestantes = findViewById(R.id.vidasRestantes);
         questaoTexto = findViewById(R.id.questaoTexto);
         quadradoODS = findViewById(R.id.quadradoOds);
+        pontos = findViewById(R.id.pontos);
 
         questaoNumero = findViewById(R.id.questaoNumero);
         enviarResposta = findViewById(R.id.btnEnviarResposta);
@@ -152,9 +159,27 @@ public class gameplay extends AppCompatActivity {
             if (indiceRespostaSelecionada == questoes.get(numeroQuestao).getOpcaoCorreta()) {
                 Toast.makeText(this, "Resposta Correta!",Toast.LENGTH_SHORT).show();
                 findViewById(idRespostaSelecionada).setBackgroundColor(Color.GREEN);
-                numeroQuestao  = numeroQuestao+1;
+
+                sequencia++;
+
+                numeroQuestao  = numeroQuestao+1; //sistema de pontuação
+                sequencia++;
+                if(sequencia < 3){
+                    pontosTotais += 1;
+                }
+                else if(sequencia <= 5){
+                    pontosTotais += 3;
+                }
+                else if(sequencia <= 7){
+                    pontosTotais += 5;
+                }
+                else if(sequencia <= 10){
+                    pontosTotais += 10;
+                }
+
                 questaoNumero.setText("Questão " + numeroQuestao);
                 if(numeroQuestao < questoes.size()){
+                    pontos.setText("Pontos: " + pontosTotais);
                     new android.os.Handler().postDelayed(() -> {
                         retornarCores();
                         atualizarQuestao();
@@ -168,10 +193,11 @@ public class gameplay extends AppCompatActivity {
 
 
             }
-            else {
+            else { //Em caso de resposta errada
                 Toast.makeText(this, "Resposta Incorreta!",Toast.LENGTH_SHORT).show();
                 findViewById(idRespostaSelecionada).setBackgroundColor(Color.RED);
                 vidas -=1;
+                sequencia = 0;
                 vidasRestantes.setText("Vidas Restantes: " + vidas);
                 if(vidas == 0){
                     Toast.makeText(this, "Você Perdeu!",Toast.LENGTH_SHORT).show();
