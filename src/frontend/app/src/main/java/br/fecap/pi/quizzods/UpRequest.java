@@ -15,36 +15,14 @@ public class UpRequest {
     private String username;
     private String email;
     private String password;
-    private String token;
+
 
     // Construtor do UpRequest
     public UpRequest(String username, String email, String password) {
         this.username = username;
         this.email = email;
-        this.password = hashPassword(password); // Hashing da senha no construtor
-    }
+        this.password = password; // Envie a senha em texto puro para que o backend faça o hashing
 
-    // Método para hash da senha
-    public String hashPassword(String password) {
-        String salt = generateSalt(); // Gerar salt único para o usuário
-
-        try {
-            // Criação de KeySpec para o algoritmo PBKDF2
-            KeySpec spec = new PBEKeySpec(password.toCharArray(), salt.getBytes(), 65536, 128);
-            SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
-            byte[] hash = factory.generateSecret(spec).getEncoded();
-            return Base64.encodeToString(hash, Base64.DEFAULT); // Codificação do hash para armazenamento
-        } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-            throw new RuntimeException("Erro ao hashear senha: " + e.getMessage());
-        }
-    }
-
-    // Método para gerar salt único de maneira mais segura usando SecureRandom
-    private String generateSalt() {
-        SecureRandom random = new SecureRandom();
-        byte[] salt = new byte[16]; // Salt de 16 bytes (128 bits)
-        random.nextBytes(salt); // Preenche o array salt com bytes aleatórios
-        return Base64.encodeToString(salt, Base64.DEFAULT); // Codificando salt para armazenamento
     }
 
     // Getters
@@ -60,6 +38,7 @@ public class UpRequest {
         return password;
     }
 
+
     // A classe para resposta do servidor (Cadastro)
     public static class SignUpResponse {
         private boolean success;
@@ -73,7 +52,6 @@ public class UpRequest {
         public String getMessage() {
             return message;
         }
-
         public String getToken() {
             return token;
         }
@@ -84,9 +62,11 @@ public class UpRequest {
         private String username;
         private String password;
 
+
         public LoginRequest(String username, String password) {
             this.username = username;
             this.password = password;
+
         }
 
         // Getters
@@ -97,13 +77,18 @@ public class UpRequest {
         public String getPassword() {
             return password;
         }
+
+        public class SaltResponse {
+        }
     }
 
     // Classe para a resposta do servidor (Login)
     public static class LoginResponse {
         private boolean success;
         private String message;
-        private String token;
+        private String salt;
+        private String hashedPassword;
+
 
         public boolean isSuccess() {
             return success;
@@ -112,9 +97,31 @@ public class UpRequest {
         public String getMessage() {
             return message;
         }
-
-        public String getToken() {
-            return token;
+        public String getSalt(){
+            return salt;
         }
+        public String getHashedPassword(){
+            return hashedPassword;
+        }
+
+        public static class SaltResponse{
+            private boolean success;
+            private String message;
+            private String salt;
+
+            public boolean isSuccess() {
+                return success;
+            }
+
+            public String getMessage() {
+                return message;
+            }
+            public String getSalt(){
+                return salt;
+            }
+        }
+
+
+
     }
 }

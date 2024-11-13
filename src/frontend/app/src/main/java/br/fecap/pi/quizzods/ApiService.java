@@ -3,7 +3,9 @@ package br.fecap.pi.quizzods;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 // interface para serviço de API
 public interface ApiService {
@@ -15,8 +17,10 @@ public interface ApiService {
     @POST("/login")
    Call<UpRequest.LoginResponse> login(@Body UpRequest.LoginRequest loginRequest);
 
-    //Call<UpRequest.LoginResponse> login(@Body UpRequest.LoginRequest loginRequest);  // Tipos devem corresponder às classes que capturam dados
 
+
+    @GET("/salt")
+    Call<UpRequest.LoginRequest.SaltResponse> getSalt(@Query("username") String username);
 }
 
 

@@ -23,14 +23,15 @@ import javax.crypto.spec.PBEKeySpec;
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "UserDB.db";
-    private static final int DATABASE_VERSION = 1; // Adicionando versão do banco de dados
+    private static final int DATABASE_VERSION = 2; // Versão do banco de dados
     private static final String TABLE_NAME = "users";
     private static final String COL_1 = "ID";
     private static final String COL_2 = "username";
     private static final String COL_3 = "email";
     private static final String COL_4 = "password";
-    private static final String COL_5 = "salt"; // FOI ADICIONADO POR CAUSA DA MUDANÇA NO BANCO
+    private static final String COL_5 = "salt"; // Coluna adicional para salt
     private Context context;
+
 
     public DBHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -42,33 +43,41 @@ public class DBHelper extends SQLiteOpenHelper {
         // Cria a tabela "users" com as colunas especificadas
         String createTable = "CREATE TABLE " + TABLE_NAME + " (" +
                 COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COL_2 + " TEXT,  " +
+                COL_2 + " TEXT, " +
                 COL_3 + " TEXT, " +
-                COL_4 + " TEXT,"+
-                COL_5 + "TEXT)";
+                COL_4 + " TEXT, " +
+                COL_5 + " TEXT)";
 
         try {
             db.execSQL(createTable);
-            Toast.makeText(context, "Banco de dados criado com sucesso!", Toast.LENGTH_SHORT).show();
+            Log.d("DBHelper", "Tabela criada com sucesso.");
         } catch (SQLException e) {
-            Toast.makeText(context, "Erro ao criar o banco de dados: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            Log.e("DBHelper", "Erro ao criar a tabela: " + e.getMessage());
         }
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        try {
-            db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
-            onCreate(db);
-        } catch (SQLException e) {
-            Toast.makeText(context, "Erro ao atualizar o banco de dados: " + e.getMessage(), Toast.LENGTH_LONG).show();
-        }
+        // Exclui a tabela existente
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        // Recria a estrutura do banco
+        onCreate(db);
+
     }
 
+    @Override
+    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        resetDatabase();
+        onCreate(db);
+    }
 
+    // Método para resetar o banco de dados
+    public void resetDatabase() {
+        context.deleteDatabase(DATABASE_NAME);
+        Log.d("DBHelper", "Banco de dados deletado com sucesso.");
+    }
 
     // Função para gerar um salt seguro de 16 bytes
-
     public String getSaltForUser(String username) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT salt FROM users WHERE username = ?", new String[]{username});
@@ -81,17 +90,11 @@ public class DBHelper extends SQLiteOpenHelper {
         return null;  // Retorna null se o usuário não for encontrado
     }
 
-
     public boolean insertUser(String username, String email, String password, String salt) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         try {
-
-
-            //String salt = generateSalt();
-
-
-            // Aplica hashing na senha ante de armazenar
+            // Aplica hashing na senha antes de armazenar
             String hashedPassword = hashPassword(password, salt);
 
             ContentValues contentValues = new ContentValues();
@@ -102,7 +105,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
             // Insere os dados e armazena o resultado na tabela
             long result = db.insert(TABLE_NAME, null, contentValues);
-            Log.d("SQLite", "Inserido: nome: " + username + ", Email: " + email + ", Senha: " + password);
+            Log.d("SQLite", "Inserido: nome: " + username + ", Email: " + email + ", Senha: " + hashedPassword);
             if (result == -1) {
                 throw new SQLException("Erro ao inserir os dados");
             }
@@ -115,7 +118,6 @@ public class DBHelper extends SQLiteOpenHelper {
             db.close();
         }
     }
-
 
     public boolean checkUser(String username, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -132,20 +134,17 @@ public class DBHelper extends SQLiteOpenHelper {
                 // Gera o hash da senha fornecida com o salt armazenado
                 String hashedPassword = hashPassword(password, salt);
 
-                return storedHash.equals(hashedPassword);  // Compara os hashes
+                return storedHash.equals(hashedPassword);  // Compara os hashes e retorna o resultado
             } finally {
                 cursor.close();
             }
         }
         cursor.close();
-        return false;  // Retorna false se o usuário não foi encontrado
-
-
+        return false;  // Retorna false se o usuário não for encontrado
     }
 
+    // Função para gerar o hash da senha
     public static String hashPassword(String password, String salt) {
-       // String SALT = "umsaltounico"; // Salt fixo, para simplificação
-
         try {
             KeySpec spec = new PBEKeySpec(password.toCharArray(), salt.getBytes(), 65536, 128);
             SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
@@ -157,6 +156,8 @@ public class DBHelper extends SQLiteOpenHelper {
             throw new RuntimeException("Erro ao hashear senha: " + e.getMessage());
         }
     }
+
+    // Função para recuperar todos os usuários do banco de dados
     public Cursor getAllUsers() {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -164,5 +165,5 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-    }
+}
 

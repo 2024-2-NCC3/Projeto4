@@ -20,6 +20,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 
@@ -43,8 +44,8 @@ public class SignUp extends AppCompatActivity {
     // DBHelper interno para gerenciamento do banco de dados
 
 
-        private Context context;
-        DBHelper dbHelper;
+    private Context context;
+    DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,11 @@ public class SignUp extends AppCompatActivity {
         EditText email = findViewById(R.id.email_input);
         EditText senha = findViewById(R.id.password_input);
         Button btnConta = findViewById(R.id.btnCriarConta);
+
+
+
+
+
 
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(chain -> {
@@ -125,15 +131,16 @@ public class SignUp extends AppCompatActivity {
 
 
                         // Salvando os dados no banco de dados localmente
-                        String salt = "valor de salt";
-                        boolean isInserted = dbHelper.insertUser(usernameText, emailText, senhaText, salt);
+                        String salt = generateSalt();
+                        String hashedPassword = hashPassword(senhaText, salt);
+                        boolean isInserted = dbHelper.insertUser(usernameText, emailText, hashedPassword, salt);
                         if (isInserted) {
                             Toast.makeText(SignUp.this, "Dados salvos localmente", Toast.LENGTH_SHORT).show();
                         }
 
                         // Navegando para a MainActivity após o cadastro
 
-                        Intent intent = new Intent(SignUp.this, menuJogo.class);
+                        Intent intent = new Intent(SignUp.this, MainActivity.class);
                         startActivity(intent);
                     } else {
                         Log.e("API_ERROR", "Erro no cadastro: " + response.code() + " " + response.message());
@@ -141,6 +148,27 @@ public class SignUp extends AppCompatActivity {
                         Toast.makeText(SignUp.this, "Erro no cadastro: " + response.message(), Toast.LENGTH_SHORT).show();
                     }
                 }
+
+                public String generateSalt() {
+                    byte[] salt = new byte[16]; // 16 bytes é uma boa escolha para o salt
+                    new SecureRandom().nextBytes(salt); // Gera um salt aleatório
+                    return Base64.encodeToString(salt, Base64.DEFAULT); // Codifica o salt em Base64
+                }
+
+
+                public String hashPassword(String password, String salt) {
+                    //String hashedPassword = hashPassword(senhaText, salt);
+                    try {
+                        KeySpec spec = new PBEKeySpec(password.toCharArray(), salt.getBytes(), 65536, 192);
+                        SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+                        byte[] hash = factory.generateSecret(spec).getEncoded();
+                        return Base64.encodeToString(hash, Base64.DEFAULT); // Codifica o hash em Base64
+                    } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+                        Log.e("HashingError", "Erro ao hashear a senha", e);
+                        return null;
+                    }
+                }
+
 
                 @Override
                 public void onFailure(Call<UpRequest.SignUpResponse> call, Throwable t) {
