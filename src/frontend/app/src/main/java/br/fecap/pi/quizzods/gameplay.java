@@ -5,13 +5,13 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.Collections;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -27,7 +27,7 @@ public class gameplay extends AppCompatActivity {
     private TextView questaoNumero, questaoTexto;
     private TextView vidasRestantes;
     private TextView pontos;
-    private RelativeLayout quadradoODS;
+    private ConstraintLayout quadradoODS;
 
 
 //Lista de questões (enunciado, alternativas, resposta correta, numero da ODS)
@@ -118,8 +118,8 @@ public class gameplay extends AppCompatActivity {
 
     private int pontosTotais = 0;
     private int sequencia = 0;
-    private int numeroQuestao = 0;
-    private int vidas = 3;
+    private int numeroQuestao = 1;
+    private int vidas = 5;
 
 
 
@@ -162,13 +162,16 @@ public class gameplay extends AppCompatActivity {
 
                 sequencia++;
 
-                numeroQuestao  = numeroQuestao+1; //sistema de pontuação
+                numeroQuestao++; //sistema de pontuação
                 sequencia++;
                 if(sequencia < 3){
                     pontosTotais += 1;
                 }
                 else if(sequencia <= 5){
                     pontosTotais += 3;
+                    if(sequencia == 5){
+                        vidas++;
+                    }
                 }
                 else if(sequencia <= 7){
                     pontosTotais += 5;
@@ -177,9 +180,9 @@ public class gameplay extends AppCompatActivity {
                     pontosTotais += 10;
                 }
 
-                questaoNumero.setText("Questão " + numeroQuestao);
+                questaoNumero.setText("" + numeroQuestao);
                 if(numeroQuestao < questoes.size()){
-                    pontos.setText("Pontos: " + pontosTotais);
+                    pontos.setText("PONTOS: " + pontosTotais);
                     new android.os.Handler().postDelayed(() -> {
                         retornarCores();
                         atualizarQuestao();
@@ -198,7 +201,7 @@ public class gameplay extends AppCompatActivity {
                 findViewById(idRespostaSelecionada).setBackgroundColor(Color.RED);
                 vidas -=1;
                 sequencia = 0;
-                vidasRestantes.setText("Vidas Restantes: " + vidas);
+                vidasRestantes.setText("VIDAS: " + vidas);
                 if(vidas == 0){
                     Toast.makeText(this, "Você Perdeu!",Toast.LENGTH_SHORT).show();
                     enviarResposta.setEnabled(false);
@@ -278,7 +281,7 @@ public class gameplay extends AppCompatActivity {
         return numeroDaOds;
     }
 
-    public void setarCorDoQuadradoODS(Questao questao, RelativeLayout quadradoODS) {
+    public void setarCorDoQuadradoODS(Questao questao, ConstraintLayout quadradoODS) {
         int corDaOds = obterCorDaOds(questao.getNumeroDaOds());
         int cor = getResources().getColor(corDaOds,getTheme());
         quadradoODS.setBackgroundColor(cor);
