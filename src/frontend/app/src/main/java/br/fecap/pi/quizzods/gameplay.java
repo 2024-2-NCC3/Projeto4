@@ -1,5 +1,6 @@
 package br.fecap.pi.quizzods;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
@@ -160,8 +161,6 @@ public class gameplay extends AppCompatActivity {
                 Toast.makeText(this, "Resposta Correta!",Toast.LENGTH_SHORT).show();
                 findViewById(idRespostaSelecionada).setBackgroundColor(Color.GREEN);
 
-                sequencia++;
-
                 numeroQuestao++; //sistema de pontuação
                 sequencia++;
                 if(sequencia < 3){
@@ -181,16 +180,16 @@ public class gameplay extends AppCompatActivity {
                 }
 
                 questaoNumero.setText("" + numeroQuestao);
-                if(numeroQuestao < questoes.size()){
+                if(numeroQuestao <= 10){
                     pontos.setText("PONTOS: " + pontosTotais);
                     new android.os.Handler().postDelayed(() -> {
                         retornarCores();
                         atualizarQuestao();
+
                     }, 1000);
                 }
                 else{
-                    Toast.makeText(this, "Fim de jogo!",Toast.LENGTH_SHORT).show();
-                    enviarResposta.setEnabled(false);
+                    MudarDeTela(numeroQuestao, pontosTotais, vidas);
                 }
 
 
@@ -205,6 +204,7 @@ public class gameplay extends AppCompatActivity {
                 if(vidas == 0){
                     Toast.makeText(this, "Você Perdeu!",Toast.LENGTH_SHORT).show();
                     enviarResposta.setEnabled(false);
+                    MudarDeTela(numeroQuestao, pontosTotais, vidas);
                 }
 
             }
@@ -287,5 +287,15 @@ public class gameplay extends AppCompatActivity {
         quadradoODS.setBackgroundColor(cor);
 
 
+    }
+
+    public void MudarDeTela(int numeroQuestao, int pontosTotais, int vidas){
+        Intent intent = new Intent(gameplay.this, FimDeJogo.class);
+
+        intent.putExtra("NUMERO_QUESTAO", numeroQuestao);
+        intent.putExtra("PONTOS_TOTAIS", pontosTotais);
+        intent.putExtra("VIDAS", vidas);
+
+        startActivity(intent);
     }
 }
