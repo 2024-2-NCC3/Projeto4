@@ -21,7 +21,13 @@
 
 
 <br><br>
-Nosso projeto foca em espalhar o conhecimento sobre os Objetivos de Desenevolvimento Sustentável (ODS) da ONU através de um quiz dinâmico e divertido! Bora jogar 🎮
+Nosso projeto foca em espalhar o conhecimento sobre os Objetivos de Desenvolvimento Sustentável (ODS) da ONU através de um quiz dinâmico e divertido! 
+<br/>
+A Quizzer é uma empresa que nasceu por conta do Quiz dos ODS, pensamos em um modo de espalhar conhecimento de forma gratuita para públicos das mais diversas idades com um jogo totalmente lúdico (e talvez até viciante)
+<br/>
+Nossos jogadores criam uma conta utilizando um formulário simples com dados que estarõ criptografados em nosso banco de dados e com apenas mais um clique é possível começar a jogatina!
+<br/>
+Bora jogar 🎮
 <br><br>
 
 ## 🛠 Estrutura de pastas
