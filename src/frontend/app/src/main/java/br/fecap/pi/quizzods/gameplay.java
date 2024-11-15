@@ -148,18 +148,33 @@ public class gameplay extends AppCompatActivity {
 
         atualizarQuestao(); //começa o jogo
 
+        vidasRestantes.setText("VIDAS: " + vidas );
 
 
 
 
 
         enviarResposta.setOnClickListener(v -> {
+
+
             retornarCores();
             int idRespostaSelecionada = divQuestoes.getCheckedRadioButtonId(); //caso a resposta esteja correta
+
+            if (idRespostaSelecionada == -1) {
+                Toast.makeText(this, "Selecione uma resposta!",Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             int indiceRespostaSelecionada = divQuestoes.indexOfChild(findViewById(idRespostaSelecionada));
             if (indiceRespostaSelecionada == questoes.get(numeroQuestao).getOpcaoCorreta()) {
                 Toast.makeText(this, "Resposta Correta!",Toast.LENGTH_SHORT).show();
                 findViewById(idRespostaSelecionada).setBackgroundColor(Color.GREEN);
+
+                questao1.setEnabled(false);
+                questao2.setEnabled(false);
+                questao3.setEnabled(false);
+                questao4.setEnabled(false);
+                enviarResposta.setEnabled(false);
 
                 numeroQuestao++; //sistema de pontuação
                 sequencia++;
@@ -180,7 +195,7 @@ public class gameplay extends AppCompatActivity {
                 }
 
                 questaoNumero.setText("" + numeroQuestao);
-                if(numeroQuestao <= 10){
+                if(numeroQuestao < 10){
                     pontos.setText("PONTOS: " + pontosTotais);
                     new android.os.Handler().postDelayed(() -> {
                         retornarCores();
@@ -198,13 +213,17 @@ public class gameplay extends AppCompatActivity {
             else { //Em caso de resposta errada
                 Toast.makeText(this, "Resposta Incorreta!",Toast.LENGTH_SHORT).show();
                 findViewById(idRespostaSelecionada).setBackgroundColor(Color.RED);
+                findViewById(idRespostaSelecionada).setEnabled(false);
                 vidas -=1;
                 sequencia = 0;
                 vidasRestantes.setText("VIDAS: " + vidas);
                 if(vidas == 0){
-                    Toast.makeText(this, "Você Perdeu!",Toast.LENGTH_SHORT).show();
-                    enviarResposta.setEnabled(false);
-                    MudarDeTela(numeroQuestao, pontosTotais, vidas);
+                    new android.os.Handler().postDelayed(() -> {
+                        enviarResposta.setEnabled(false);
+                        MudarDeTela(numeroQuestao, pontosTotais, vidas);
+
+                    }, 1000);
+
                 }
 
             }
@@ -230,6 +249,12 @@ public class gameplay extends AppCompatActivity {
         questao3.setText(questaoAtual.getAlternativas().get(2));
         questao4.setText(questaoAtual.getAlternativas().get(3));
         setarCorDoQuadradoODS(questaoAtual, quadradoODS);
+
+        questao1.setEnabled(true);
+        questao2.setEnabled(true);
+        questao3.setEnabled(true);
+        questao4.setEnabled(true);
+        enviarResposta.setEnabled(true);
     }
 
     private void retornarCores(){ //após acertar a questao seta elas de volta a cor original
