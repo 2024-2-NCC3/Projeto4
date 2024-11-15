@@ -3,6 +3,7 @@ package br.fecap.pi.quizzods;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -142,9 +143,9 @@ public class gameplay extends AppCompatActivity {
         questaoTexto = findViewById(R.id.questaoTexto);
         quadradoODS = findViewById(R.id.quadradoOds);
         pontos = findViewById(R.id.pontos);
-
         questaoNumero = findViewById(R.id.questaoNumero);
         enviarResposta = findViewById(R.id.btnEnviarResposta);
+
 
         atualizarQuestao(); //começa o jogo
 
@@ -167,7 +168,6 @@ public class gameplay extends AppCompatActivity {
 
             int indiceRespostaSelecionada = divQuestoes.indexOfChild(findViewById(idRespostaSelecionada));
             if (indiceRespostaSelecionada == questoes.get(numeroQuestao).getOpcaoCorreta()) {
-                Toast.makeText(this, "Resposta Correta!",Toast.LENGTH_SHORT).show();
                 findViewById(idRespostaSelecionada).setBackgroundColor(Color.GREEN);
 
                 questao1.setEnabled(false);
@@ -315,11 +315,15 @@ public class gameplay extends AppCompatActivity {
     }
 
     public void MudarDeTela(int numeroQuestao, int pontosTotais, int vidas){
+
         Intent intent = new Intent(gameplay.this, FimDeJogo.class);
+        String username = getIntent().getStringExtra("USERNAME");
 
         intent.putExtra("NUMERO_QUESTAO", numeroQuestao);
         intent.putExtra("PONTOS_TOTAIS", pontosTotais);
         intent.putExtra("VIDAS", vidas);
+        intent.putExtra("USERNAME", username);
+        Log.d("menuJogo", "Username: " + username);
 
         startActivity(intent);
     }

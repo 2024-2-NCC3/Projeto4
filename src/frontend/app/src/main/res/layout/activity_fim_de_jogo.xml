@@ -23,16 +23,26 @@
             android:id="@+id/textoResultado"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:padding="20dp"
+            android:textColor="#444"
+            android:padding="25dp"
             android:textStyle="bold"
             android:textAlignment="center"
             android:textSize="20dp"
-
-            android:text="TextView"
-
-
+            android:text=""
             />
+
+        <TextView
+            android:id="@+id/textoUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#444"
+            android:padding="22dp"
+            android:textAlignment="center"
+            android:textSize="20dp"
+            android:text="aaa"
+             />
+
+
     </LinearLayout>
 
     <Button
@@ -41,10 +51,10 @@
         android:layout_height="wrap_content"
         android:text="Tela Inicial"
         android:layout_margin="20dp"
-        android:padding="13dp"
-        android:backgroundTint="#c3f584"
+        android:padding="15dp"
+        android:backgroundTint="#6EC5A2"
         android:textSize="18sp"
-        android:textColor="@color/black"
+        android:textColor="#f2f2f2"
         android:textStyle="bold"
         android:layout_below="@+id/quadradoFimDeJogo"></Button>
 
@@ -54,10 +64,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:padding="13dp"
-        android:backgroundTint="#c3f584"
+        android:padding="15dp"
+        android:backgroundTint="#6EC5A2"
         android:textSize="18sp"
-        android:textColor="@color/black"
+        android:textColor="#f2f2f2"
         android:textStyle="bold"
         android:text="Reiniciar"
         ></Button>

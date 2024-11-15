@@ -18,7 +18,8 @@
         android:padding="20dp"
         android:textSize="60sp"
         android:gravity="center"
-        android:text="QuizzOds" />
+        android:fontFamily="sans-serif-medium"
+        android:text="QuizzODS" />
 
     <ImageView
         android:id="@+id/logoJogo"
@@ -31,30 +32,37 @@
     <Button
         android:id="@+id/btnJogar"
         android:layout_centerHorizontal="true"
-        android:padding="13dp"
-        android:textSize="18sp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:layout_margin="20dp"
-        android:backgroundTint="#c3f584"
-        android:layout_below="@id/logoJogo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/logoJogo"
+        android:padding="15dp"
+        android:textSize="18sp"
+        android:textColor="#f2f2f2"
+        android:textStyle="bold"
+        android:layout_margin="30dp"
+        android:backgroundTint="#6EC5A2"
+        android:elevation="10dp"
+
         android:text="JOGAR" />
 
     <Button
         android:id="@+id/btnCreditos"
-        android:layout_centerHorizontal="true"
-        android:padding="13dp"
-        android:textSize="18sp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:layout_margin="20dp"
-        android:backgroundTint="#c3f584"
-        android:layout_below="@id/btnJogar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CRÉDITOS" />
+        android:layout_below="@id/btnJogar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="30dp"
+        android:backgroundTint="#6EC5A2"
+        android:padding="15dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif"
+        android:textColor="#f2f2f2"
+        android:elevation="10dp"
+
+        android:text="CRÉDITOS"
+        />
 
     <ImageView
         android:id="@+id/imageUsuario"
@@ -64,7 +72,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="314dp"
         android:layout_marginBottom="26dp"
-        android:background="#c3f584"
+        android:background="#6EC5A2"
+
         app:srcCompat="@drawable/baseline_person_24"
 
         />

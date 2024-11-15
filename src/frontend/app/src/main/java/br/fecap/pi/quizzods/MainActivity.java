@@ -105,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
 
                 // Realiza o login com o hash da senha e vai para próxima tela (arrumar depois)
                 Intent intent = new Intent(MainActivity.this, menuJogo.class);
+                intent.putExtra("USERNAME", username);
+                Log.d("menuJogo", "Username: " + username);
                 startActivity(intent);
                 finish();
             }

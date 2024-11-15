@@ -3,6 +3,7 @@ package br.fecap.pi.quizzods;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,6 +24,7 @@ public class menuJogo extends AppCompatActivity {
     private ImageView imageUsuario;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,8 @@ public class menuJogo extends AppCompatActivity {
         btnCreditos = findViewById(R.id.btnCreditos);
         btnJogar = findViewById(R.id.btnJogar);
         imageUsuario = findViewById(R.id.imageUsuario);
+        String username = getIntent().getStringExtra("USERNAME");
+
 
 
 
@@ -39,11 +43,14 @@ public class menuJogo extends AppCompatActivity {
         btnCreditos.setOnClickListener(v -> {
                     Intent intent = new Intent(menuJogo.this, creditos.class);
                     startActivity(intent);
+
                 });
 
         btnJogar.setOnClickListener(v -> {
             Intent intent = new Intent(menuJogo.this, gameplay.class);
             startActivity(intent);
+            intent.putExtra("USERNAME", username);
+            Log.d("menuJogo", "Username: " + username);
         });
 
       imageUsuario.setOnClickListener(new View.OnClickListener(){

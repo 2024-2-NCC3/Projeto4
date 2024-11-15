@@ -2,6 +2,7 @@ package br.fecap.pi.quizzods;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ public class FimDeJogo extends AppCompatActivity {
     private TextView textoResultado;
     private Button btnTelaInicial;
     private Button btnReiniciar;
+    private TextView textoUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,19 +29,26 @@ public class FimDeJogo extends AppCompatActivity {
         textoResultado = findViewById(R.id.textoResultado);
         btnTelaInicial = findViewById(R.id.btnTelaInicial);
         btnReiniciar = findViewById(R.id.btnReiniciar);
+        textoUsername = findViewById(R.id.textoUsername);
 
         Intent intent = getIntent();
         int numeroQuestao = intent.getIntExtra("NUMERO_QUESTAO", 0);
         int pontosTotais = intent.getIntExtra("PONTOS_TOTAIS", 0);
         int vidas = intent.getIntExtra("VIDAS", 0);
+        String username = getIntent().getStringExtra("USERNAME");
         textoResultado.toString().toUpperCase();
 
-        if (numeroQuestao > 9) {
+        if (numeroQuestao > 9) { //Layout para caso voce vença
 
             textoResultado.setText("Você Venceu!");
+            textoUsername.setText("Parabéns, Você terminou com " + vidas + " vida(s) restante(s) \n e " + pontosTotais + " pontos!");
+            Log.d("menuJogo", "Username: " + username);
+
         }
         else {
             textoResultado.setText("Você Perdeu!");
+            textoUsername.setText("Que pena, Você fez " + pontosTotais + " pontos...");
+            Log.d("menuJogo", "Username: " + username);
         }
 
         btnTelaInicial.setOnClickListener(v -> {

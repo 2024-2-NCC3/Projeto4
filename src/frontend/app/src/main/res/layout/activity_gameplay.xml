@@ -155,13 +155,14 @@
         android:layout_height="wrap_content"
         android:padding="15dp"
         android:text="Enviar Resposta"
-        android:textColor="#444"
+        android:textColor="#f2f2f2"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:backgroundTint="#c3f584"
+        android:backgroundTint="#6EC5A2"
         app:layout_constraintTop_toBottomOf="@id/divQuestoes"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="30dp"
         android:layout_marginTop="20dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
