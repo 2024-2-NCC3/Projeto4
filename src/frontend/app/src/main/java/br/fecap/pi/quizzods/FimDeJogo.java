@@ -53,11 +53,13 @@ public class FimDeJogo extends AppCompatActivity {
 
         btnTelaInicial.setOnClickListener(v -> {
             Intent intent1 = new Intent(this, menuJogo .class);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             startActivity(intent1);
         });
 
         btnReiniciar.setOnClickListener(v -> {
             Intent intent2 = new Intent(this, gameplay.class);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             startActivity(intent2);
         });
 

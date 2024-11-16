@@ -14,7 +14,7 @@
         android:layout_height="350dp"
         android:layout_margin="10dp"
         android:orientation="vertical"
-        android:background="@color/white"
+        android:background="@drawable/card_fim_de_jogo"
         android:elevation="10dp"
         >
 
@@ -23,23 +23,31 @@
             android:id="@+id/textoResultado"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#444"
+            android:textColor="#2C3E50"
             android:padding="25dp"
             android:textStyle="bold"
             android:textAlignment="center"
             android:textSize="20dp"
-            android:text=""
+            android:text="VOCE VENCEU"
+            android:shadowColor="#B3000000"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="2"
             />
 
         <TextView
             android:id="@+id/textoUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#444"
+            android:textColor="#2C3E50"
             android:padding="22dp"
             android:textAlignment="center"
             android:textSize="20dp"
-            android:text="aaa"
+            android:text="2000 PONTOS"
+            android:shadowColor="#B3000000"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="2"
              />
 
 

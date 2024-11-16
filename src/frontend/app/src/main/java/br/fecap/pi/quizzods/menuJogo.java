@@ -43,12 +43,14 @@ public class menuJogo extends AppCompatActivity {
         btnCreditos.setOnClickListener(v -> {
                     Intent intent = new Intent(menuJogo.this, creditos.class);
                     startActivity(intent);
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
                 });
 
         btnJogar.setOnClickListener(v -> {
             Intent intent = new Intent(menuJogo.this, gameplay.class);
             startActivity(intent);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             intent.putExtra("USERNAME", username);
             Log.d("menuJogo", "Username: " + username);
         });

@@ -317,6 +317,7 @@ public class gameplay extends AppCompatActivity {
     public void MudarDeTela(int numeroQuestao, int pontosTotais, int vidas){
 
         Intent intent = new Intent(gameplay.this, FimDeJogo.class);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         String username = getIntent().getStringExtra("USERNAME");
 
         intent.putExtra("NUMERO_QUESTAO", numeroQuestao);
