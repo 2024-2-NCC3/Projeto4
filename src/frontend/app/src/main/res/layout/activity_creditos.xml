@@ -28,7 +28,7 @@
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:text="Rodrigo Correa da Gama\nRA:23025472"
-        android:textColor="@color/black"
+        android:textColor="@color/textoCorPreto"
         android:padding="15dp"
         android:textSize="20dp"
         android:layout_margin="20dp" />
@@ -41,7 +41,7 @@
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:text="Rafaella Morelli Ezequiel\nRA:23024902"
-        android:textColor="@color/black"
+        android:textColor="@color/textoCorPreto"
         android:padding="15dp"
         android:textSize="20dp"
         android:layout_margin="20dp" />
@@ -54,7 +54,7 @@
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:text="Leonardo Ferreira da Silva\nRA:23025389"
-        android:textColor="@color/black"
+        android:textColor="@color/textoCorPreto"
         android:padding="15dp"
         android:textSize="20dp"
         android:layout_margin="20dp" />
@@ -67,7 +67,7 @@
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:text="Maria Kassandra Alves Gomes\nRA:3025405"
-        android:textColor="@color/black"
+        android:textColor="@color/textoCorPreto"
         android:padding="15dp"
         android:textSize="20dp"
         android:layout_margin="20dp" />
@@ -78,9 +78,9 @@
         android:layout_height="wrap_content"
 
         android:padding="13dp"
-        android:backgroundTint="#6EC5A2"
+        android:backgroundTint="@color/btnCor"
         android:textSize="18sp"
-        android:textColor="#f2f2f2"
+        android:textColor="@color/btnTextoCor"
         android:layout_marginHorizontal="30dp"
         android:textStyle="bold"
         android:layout_below="@+id/participante4"
