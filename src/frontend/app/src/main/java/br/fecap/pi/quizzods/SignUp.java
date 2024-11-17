@@ -143,6 +143,7 @@ public class SignUp extends AppCompatActivity {
 
                         Intent intent = new Intent(SignUp.this, MainActivity.class);
                         startActivity(intent);
+
                     } else {
                         Log.e("API_ERROR", "Erro no cadastro: " + response.code() + " " + response.message());
 
