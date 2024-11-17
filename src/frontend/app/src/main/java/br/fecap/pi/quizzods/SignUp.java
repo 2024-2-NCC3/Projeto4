@@ -135,7 +135,8 @@ public class SignUp extends AppCompatActivity {
                         String hashedPassword = hashPassword(senhaText, salt);
                         boolean isInserted = dbHelper.insertUser(usernameText, emailText, hashedPassword, salt);
                         if (isInserted) {
-                            Toast.makeText(SignUp.this, "Dados salvos localmente", Toast.LENGTH_SHORT).show();
+                            Log.d("SignUp", "Dados salvos localmente");
+
                         }
 
                         // Navegando para a MainActivity após o cadastro

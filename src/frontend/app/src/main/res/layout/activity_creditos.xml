@@ -65,12 +65,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/participante3"
         android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
         android:gravity="center"
-        android:text="Maria Kassandra Alves Gomes\nRA:3025405"
-        android:textColor="@color/black"
         android:padding="15dp"
-        android:textSize="20dp"
-        android:layout_margin="20dp" />
+        android:text="Maria Kassandra Alves Gomes\nRA:23025405"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
 
     <Button
         android:id="@+id/btnVoltar"

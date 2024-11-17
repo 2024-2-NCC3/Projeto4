@@ -118,6 +118,30 @@ public class DBHelper extends SQLiteOpenHelper {
             db.close();
         }
     }
+  public String [] obterUser(){
+        SQLiteDatabase db =this.getReadableDatabase();
+        String username = null;
+        String email = null;
+
+
+      // Consulta SQL para buscar os usuarios
+      Cursor cursor = db.rawQuery("SELECT " + COL_2 + ","+  COL_3 + " FROM " + TABLE_NAME + " ORDER BY " + COL_1 + " DESC LIMIT 1", null);
+    if(cursor.moveToFirst()){
+        username = cursor.getString(cursor.getColumnIndexOrThrow(COL_2));
+        email = cursor.getString(cursor.getColumnIndexOrThrow(COL_3));
+
+
+    }
+    cursor.close();
+    db.close();
+
+    return new String[] {username, email};
+
+  }
+
+
+
+
 
     public boolean checkUser(String username, String password) {
         SQLiteDatabase db = this.getReadableDatabase();

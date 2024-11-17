@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
                         // Gera o hash da senha com o salt retornado
                         String hashedPassword = hashPassword(password, salt);
-                        //Log.d("AQUI TEM ALGUM ERRO", "ERRO NA SENHA?");
+
 
                         if (hashedPassword != null && hashedPassword.equals(loginResponse.getHashedPassword())) {
                             // Realiza o login com o hash da senha e vai para próxima tela (arrumar depois)
