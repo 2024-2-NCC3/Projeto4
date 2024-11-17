@@ -66,7 +66,7 @@ Execute o APK e siga as instruções de seu telefone.
 <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/2024-2-NCC3/Projeto4?tab=readme-ov-file">Quizz dos ODS</a> by <span property="cc:attributionName">Quizzer</span> is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-ND 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nd.svg?ref=chooser-v1" alt=""></a></p>
 
 ## 🎓Links
-<a href=https://www.figma.com/design/DDVUztB3fZymFXR9PisuJc/Quizz?node-id=0-1&node-type=canvas&t=CkcvWdqvFpjIfIGu-0> Figma<a/>
+<a href="https://www.figma.com/design/DDVUztB3fZymFXR9PisuJc/Quizz?node-id=0-1&node-type=canvas&t=CkcvWdqvFpjIfIGu-0"> Figma</a>
 <br>
 <a href="https://planner.cloud.microsoft/edu.fecap.br/Home/PlanViews/wKtLc2P_WEipnEV6kVMm_mQADhkR?Type=PlanLink&Channel=Link&CreatedTime=638634971339250000" target="_blank">Planner</a>
 <br>
