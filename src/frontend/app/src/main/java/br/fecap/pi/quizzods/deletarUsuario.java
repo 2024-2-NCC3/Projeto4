@@ -2,6 +2,7 @@ package br.fecap.pi.quizzods;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -12,9 +13,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class deletarUsuario extends AppCompatActivity {
 
-
-
-   private DBHelper dbHelper;
+    private Button btnVoltar;
+    private DBHelper dbHelper;
 
 
 
@@ -24,12 +24,16 @@ public class deletarUsuario extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_deletar_usuario);
 
-
+        btnVoltar = findViewById(R.id.btnVoltar);
 
         dbHelper = new DBHelper(this);  // Inicializando o banco de dados
         exibirUser();
 
-
+        btnVoltar.setOnClickListener(v -> { // Botão de voltar para o menu
+            Intent intent = new Intent(deletarUsuario.this, menuJogo.class);
+            startActivity(intent);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                });
 
 
 
@@ -55,8 +59,8 @@ public class deletarUsuario extends AppCompatActivity {
 
 
         if (username != null && email != null) {
-            textoNome.setText("Username: " + username);
-            textoEmail.setText("Email: " + email);
+            textoNome.setText("Username: \n" + username);
+            textoEmail.setText("Email: \n" + email);
 
         }
 
