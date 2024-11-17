@@ -8,6 +8,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 // interface para serviço de API
+
 public interface ApiService {
     @POST("/criarUsuario")
 

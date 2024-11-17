@@ -91,24 +91,23 @@ public class MainActivity extends AppCompatActivity {
                         //Log.d("AQUI TEM ALGUM ERRO", "ERRO NA SENHA?");
 
                         if (hashedPassword != null && hashedPassword.equals(loginResponse.getHashedPassword())) {
-
+                            // Realiza o login com o hash da senha e vai para próxima tela (arrumar depois)
+                            Intent intent = new Intent(MainActivity.this, menuJogo.class);
+                            intent.putExtra("USERNAME", username);
+                            startActivity(intent);
+                            finish();
 
                         } else {
                             Toast.makeText(MainActivity.this, "Senha incorreta", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Toast.makeText(MainActivity.this, "Erro no login: " + loginResponse.getMessage(), Toast.LENGTH_SHORT).show(); // login está com algum erro 
+                        Toast.makeText(MainActivity.this, "Erro no login: " + loginResponse.getMessage(), Toast.LENGTH_SHORT).show(); // login está com algum erro
                     }
                 } else {
                     Toast.makeText(MainActivity.this, "Falha ao fazer login", Toast.LENGTH_SHORT).show();
                 }
 
-                // Realiza o login com o hash da senha e vai para próxima tela (arrumar depois)
-                Intent intent = new Intent(MainActivity.this, menuJogo.class);
-                intent.putExtra("USERNAME", username);
-                Log.d("menuJogo", "Username: " + username);
-                startActivity(intent);
-                finish();
+
             }
 
             @Override
@@ -130,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
             byte[] hash = factory.generateSecret(spec).getEncoded();
-            return Base64.encodeToString(hash, Base64.DEFAULT);
+            return Base64.encodeToString(hash, Base64.NO_WRAP); // evitar quebras de linha
         } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
             Log.e("HashingError", "Erro ao hashear a senha", e);
             return null;

@@ -69,27 +69,27 @@
         android:id="@+id/textoNome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Teobaldo"
+        android:text="Deseja excluir sua conta?"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45"
-        android:textStyle="bold"
-        android:textSize="20sp" />
+        app:layout_constraintVertical_bias="0.45" />
 
     <TextView
         android:id="@+id/textoEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="email@exemplo.com"
+        android:text="Mande um email para:"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5"
-        android:textStyle="bold"
-        android:textSize="20sp"/>
+        app:layout_constraintVertical_bias="0.5" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
