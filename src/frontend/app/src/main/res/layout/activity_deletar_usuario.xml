@@ -26,14 +26,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="13dp"
-        android:backgroundTint="#6EC5A2"
+        android:backgroundTint="@color/btnCor"
         android:text="Alterar dados"
         android:textColor="#f2f2f2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75"
+        app:layout_constraintVertical_bias="0.70"
         android:textStyle="bold"
         android:textSize="18sp"
+        android:layout_marginHorizontal="30dp"
         />
 
     <Button
@@ -42,13 +43,30 @@
         android:layout_height="wrap_content"
         android:padding="13dp"
         android:textSize="18sp"
-        android:backgroundTint="#6EC5A2"
+        android:backgroundTint="@color/btnCor"
         android:text="Deletar conta"
         android:textColor="#f2f2f2"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.85"
+        app:layout_constraintVertical_bias="0.80"
+        android:layout_marginHorizontal="30dp"
+        />
+
+    <Button
+        android:id="@+id/btnVoltar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="13dp"
+        android:textSize="18sp"
+        android:backgroundTint="@color/btnCor"
+        android:text="Voltar"
+        android:textColor="#f2f2f2"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.90"
+        android:layout_marginHorizontal="30dp"
         />
 
     <TextView
@@ -88,6 +106,7 @@
         android:textColor="#f2f2f2"
         android:textSize="30sp"
         android:textStyle="bold"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.052"

@@ -19,5 +19,8 @@
     <color name="ods15">#56c02b</color>
     <color name="ods16">#00689d</color>
     <color name="ods17">#19486a</color>
+    <color name="textoCorPreto">#2C3E50</color>
+    <color name="btnCor">#6EC5A2</color>
+    <color name="btnTextoCor">#f2f2f2</color>
 
 </resources>

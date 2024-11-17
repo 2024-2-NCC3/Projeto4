@@ -60,9 +60,9 @@
         android:text="Tela Inicial"
         android:layout_margin="20dp"
         android:padding="15dp"
-        android:backgroundTint="#6EC5A2"
+        android:backgroundTint="@color/btnCor"
         android:textSize="18sp"
-        android:textColor="#f2f2f2"
+        android:textColor="@color/btnTextoCor"
         android:textStyle="bold"
         android:layout_below="@+id/quadradoFimDeJogo"></Button>
 
@@ -73,9 +73,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:padding="15dp"
-        android:backgroundTint="#6EC5A2"
+        android:backgroundTint="@color/btnCor"
         android:textSize="18sp"
-        android:textColor="#f2f2f2"
+        android:textColor="@color/btnTextoCor"
         android:textStyle="bold"
         android:text="Reiniciar"
         ></Button>

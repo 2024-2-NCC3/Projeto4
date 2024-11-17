@@ -135,6 +135,8 @@ public class DBHelper extends SQLiteOpenHelper {
     cursor.close();
     db.close();
 
+
+      // Retorna a array com useranem e email
     return new String[] {username, email};
 
   }

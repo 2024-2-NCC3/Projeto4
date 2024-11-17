@@ -43,7 +43,7 @@ public class deletarUsuario extends AppCompatActivity {
 
     //Vai exibir username e email após a busca no banco
     public void exibirUser(){
-        String[] user = dbHelper.obterUser();
+        String[] user = dbHelper.obterUser();  // Obtém o array com username e email
         String username = user [0];
         String email = user    [1];
 

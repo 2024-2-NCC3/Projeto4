@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(MainActivity.this, menuJogo.class);
                             intent.putExtra("USERNAME", username);
                             startActivity(intent);
-                            finish();
+
 
                         } else {
                             Toast.makeText(MainActivity.this, "Senha incorreta", Toast.LENGTH_SHORT).show();
