@@ -2,6 +2,7 @@ package br.fecap.pi.quizzods;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -30,6 +31,9 @@ public class gameplay extends AppCompatActivity {
     private TextView vidasRestantes;
     private TextView pontos;
     private ConstraintLayout quadradoODS;
+    private SoundPool soundPool;
+    private int soundIdAcerto;
+    private int soundIdErro;
 
 
 //Lista de questões (enunciado, alternativas, resposta correta, numero da ODS)
@@ -133,6 +137,14 @@ public class gameplay extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_gameplay);
 
+        soundPool = new SoundPool.Builder()
+                .setMaxStreams(2) // Número máximo de sons simultâneos
+                .build();
+
+        // Carrega os sons
+        soundIdAcerto = soundPool.load(this, R.raw.correct, 1); // Substitua "acerto" pelo nome do arquivo
+        soundIdErro = soundPool.load(this, R.raw.wrong, 1);
+
         Collections.shuffle(questoes);
         divQuestoes = findViewById(R.id.divQuestoes);
         questao1 = findViewById(R.id.questao1);
@@ -152,9 +164,6 @@ public class gameplay extends AppCompatActivity {
         vidasRestantes.setText("VIDAS: " + vidas );
 
 
-
-
-
         enviarResposta.setOnClickListener(v -> {
 
 
@@ -169,6 +178,7 @@ public class gameplay extends AppCompatActivity {
             int indiceRespostaSelecionada = divQuestoes.indexOfChild(findViewById(idRespostaSelecionada));
             if (indiceRespostaSelecionada == questoes.get(numeroQuestao).getOpcaoCorreta()) {
                 findViewById(idRespostaSelecionada).setBackgroundColor(Color.GREEN);
+                soundPool.play(soundIdAcerto, 1.0f, 1.0f, 1, 0, 1.0f);
 
                 questao1.setEnabled(false);
                 questao2.setEnabled(false);
@@ -213,6 +223,7 @@ public class gameplay extends AppCompatActivity {
             else { //Em caso de resposta errada
                 Toast.makeText(this, "Resposta Incorreta!",Toast.LENGTH_SHORT).show();
                 findViewById(idRespostaSelecionada).setBackgroundColor(Color.RED);
+                soundPool.play(soundIdErro, 1.0f, 1.0f, 1, 0, 1.0f);
                 findViewById(idRespostaSelecionada).setEnabled(false);
                 vidas -=1;
                 sequencia = 0;
@@ -327,5 +338,14 @@ public class gameplay extends AppCompatActivity {
         Log.d("menuJogo", "Username: " + username);
 
         startActivity(intent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (soundPool != null) {
+            soundPool.release(); // Libera os recursos
+            soundPool = null;
+        }
     }
 }

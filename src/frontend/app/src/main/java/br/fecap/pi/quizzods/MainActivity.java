@@ -1,6 +1,7 @@
 package br.fecap.pi.quizzods;
 
 import android.content.Intent;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
@@ -31,9 +32,14 @@ public class MainActivity extends AppCompatActivity {
     private Button loginBtn;
     private ApiService apiService;
 
+    private SoundPool soundPool;
+    private int soundIdAcerto; // ID do som de acerto
+    private int soundIdErro;   // ID do som de erro
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

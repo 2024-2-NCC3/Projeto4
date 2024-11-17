@@ -1,6 +1,7 @@
 package br.fecap.pi.quizzods;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,7 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class deletarUsuario extends AppCompatActivity {
 
-    private Button btnVoltar;
+    private Button btnVoltar, btnAbrirFormulario;
     private DBHelper dbHelper;
 
 
@@ -25,6 +26,7 @@ public class deletarUsuario extends AppCompatActivity {
         setContentView(R.layout.activity_deletar_usuario);
 
         btnVoltar = findViewById(R.id.btnVoltar);
+        btnAbrirFormulario = findViewById(R.id.btnDeletarConta);
 
         dbHelper = new DBHelper(this);  // Inicializando o banco de dados
         exibirUser();
@@ -35,6 +37,12 @@ public class deletarUsuario extends AppCompatActivity {
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 });
 
+        btnAbrirFormulario.setOnClickListener(v -> {
+            String url = "https://forms.gle/HDjfMUc4xkMr87hC6"; // Substitua pelo link do formulário
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(url));
+            startActivity(intent);
+        });
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {

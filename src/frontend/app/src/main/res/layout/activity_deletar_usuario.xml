@@ -23,29 +23,13 @@
         app:srcCompat="@drawable/icon_acount_circle_24" />
 
     <Button
-        android:id="@+id/btnAlterarDados"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="13dp"
-        android:backgroundTint="@color/btnCor"
-        android:text="Alterar dados"
-        android:textColor="#f2f2f2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.70"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:layout_marginHorizontal="30dp"
-        />
-
-    <Button
         android:id="@+id/btnDeletarConta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="13dp"
         android:textSize="18sp"
         android:backgroundTint="@color/btnCor"
-        android:text="Deletar conta"
+        android:text="Solicitar exclusão de conta"
         android:textColor="#f2f2f2"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

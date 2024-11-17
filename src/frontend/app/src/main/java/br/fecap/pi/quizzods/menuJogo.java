@@ -31,6 +31,10 @@ public class menuJogo extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_menu_jogo);
 
+        // Inicia o serviço de música
+        Intent musicServiceIntent = new Intent(this, MusicService.class);
+        startService(musicServiceIntent);
+
         btnCreditos = findViewById(R.id.btnCreditos);
         btnJogar = findViewById(R.id.btnJogar);
         imageUsuario = findViewById(R.id.imageUsuario);
