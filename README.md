@@ -23,13 +23,36 @@
 <br><br>
 Nosso projeto foca em espalhar o conhecimento sobre os Objetivos de Desenvolvimento Sustentável (ODS) da ONU através de um quiz dinâmico e divertido! 
 <br/><br>
-A Quizzer é uma empresa que nasceu por conta do Quiz dos ODS, pensamos em um modo de espalhar conhecimento de forma gratuita para públicos das mais diversas idades com um jogo totalmente lúdico (e talvez até viciante)
+A Quizzer é aplicativo que surgiu por conta do Quiz dos ODS, pensamos em um modo de espalhar conhecimento de forma gratuita para públicos das mais diversas idades com um jogo totalmente lúdico
 <br><br>
 Nossos jogadores criam uma conta utilizando um formulário simples com dados que estarão criptografados em nosso banco de dados e com apenas mais um clique é possível começar a jogatina!
 <br/><br>
 Bora jogar 🎮
-<br><br>
+<br/><br>
+## Estruturas de Dados Utilizadas no Aplicativo
 
+### Banco de Dados:
+- <strong>SQLite</strong>: Banco de dados relacional utilizado para armazenar informações dos usuários, como <code>username</code>, <code>email</code> e <code>senha</code> (armazenada de forma segura com hash e salt).
+
+### <small>Back-End:</small>
+- <strong>Node.js + Express</strong>: Servidor que gerencia as rotas da API para cadastro, login.
+- <strong>Hashing de Senha</strong>: Senhas dos usuários são armazenadas de maneira segura, utilizando técnicas de <strong>hash</strong> e <strong>salt</strong>.
+- <strong>SQLite</strong>: Responsável por persistir as informações dos usuários no banco de dados.
+
+### <small>Cliente (Android):</small>
+- <strong>Retrofit</strong>: Biblioteca utilizada para realizar comunicação HTTP entre o cliente e o servidor.
+- <strong>Persistência Local</strong>: Armazena dados como o <code>username</code> localmente, permitindo o uso em futuras requisições.
+
+### <small>Fluxo de Dados:</small>
+1. O cliente coleta dados e envia requisições para o servidor.
+2. O servidor valida as informações e interage com o banco de dados para garantir a integridade dos dados.
+3. As senhas dos usuários são armazenadas de forma segura utilizando hash e salt.
+4. O cliente recebe a resposta do servidor informando o sucesso ou erro do login ou cadastro.
+
+### <small> Forms: </small>
+- O formulário é utilizado quando o usuário decide excluir seus dados do aplicativo.
+- No campo de "Alterar Dados", o usuário é direcionado para o formulário, onde pode realizar a exclusão de sua conta.
+<br><br>
 ## 🛠 Estrutura de pastas
 
 -Raiz<br>
