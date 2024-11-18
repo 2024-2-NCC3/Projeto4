@@ -87,8 +87,15 @@ public class MainActivity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     UpRequest.LoginResponse loginResponse = response.body();
 
-                    // Verifica se a resposta indica sucesso
+
+
                     if ("Login bem-sucedido".equals(loginResponse.getMessage())) {
+                        Log.d("LoginResponse", "Mensagem da API: " + loginResponse.getMessage());
+                        //Confirmação de login bem-sucedio no app
+                        runOnUiThread(() -> {
+                            Toast.makeText(MainActivity.this, "Login bem-sucedido", Toast.LENGTH_SHORT).show();
+                        });
+
                         // Obtém o salt da resposta
                         String salt = loginResponse.getSalt();
 
@@ -97,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                         if (hashedPassword != null && hashedPassword.equals(loginResponse.getHashedPassword())) {
-                            // Realiza o login com o hash da senha e vai para próxima tela (arrumar depois)
+                            // Realiza o login com o hash da senha e vai para próxima tela
                             Intent intent = new Intent(MainActivity.this, menuJogo.class);
                             intent.putExtra("USERNAME", username);
                             startActivity(intent);
@@ -124,10 +131,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
     private String hashPassword(String password, String salt) {
         // Verifica se a senha e o salt são válidos
         if (password == null || salt == null) {
-            Log.e("HashingError", "Senha ou salt nulos");
+
             return null;
         }
 
@@ -137,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
             byte[] hash = factory.generateSecret(spec).getEncoded();
             return Base64.encodeToString(hash, Base64.NO_WRAP); // evitar quebras de linha
         } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-            Log.e("HashingError", "Erro ao hashear a senha", e);
+
             return null;
         }
     }

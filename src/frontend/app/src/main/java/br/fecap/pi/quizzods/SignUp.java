@@ -1,29 +1,22 @@
 package br.fecap.pi.quizzods;
 
-import android.content.ContentValues;
+
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
-
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import android.util.Base64;
@@ -159,7 +152,7 @@ public class SignUp extends AppCompatActivity {
 
 
                 public String hashPassword(String password, String salt) {
-                    //String hashedPassword = hashPassword(senhaText, salt);
+
                     try {
                         KeySpec spec = new PBEKeySpec(password.toCharArray(), salt.getBytes(), 65536, 192);
                         SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
@@ -180,7 +173,7 @@ public class SignUp extends AppCompatActivity {
             });
         });
 
-        // Ajustando padding com base nos insets da janela
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
