@@ -539,13 +539,11 @@ public class gameplay extends AppCompatActivity {
 
         Intent intent = new Intent(gameplay.this, FimDeJogo.class);
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        String username = getIntent().getStringExtra("USERNAME");
+
 
         intent.putExtra("NUMERO_QUESTAO", numeroQuestao);
         intent.putExtra("PONTOS_TOTAIS", pontosTotais);
         intent.putExtra("VIDAS", vidas);
-        intent.putExtra("USERNAME", username);
-        Log.d("menuJogo", "Username: " + username);
 
         startActivity(intent);
     }

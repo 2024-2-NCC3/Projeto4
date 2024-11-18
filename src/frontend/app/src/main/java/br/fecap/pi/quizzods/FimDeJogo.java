@@ -19,11 +19,16 @@ public class FimDeJogo extends AppCompatActivity {
     private Button btnReiniciar;
     private TextView textoUsername;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fim_de_jogo);
         EdgeToEdge.enable(this);
+
+        DBHelper dbHelper = new DBHelper(this);
+        String[] user = dbHelper.obterUser();
+        String username = user[0];
 
 
         textoResultado = findViewById(R.id.textoResultado);
@@ -35,20 +40,19 @@ public class FimDeJogo extends AppCompatActivity {
         int numeroQuestao = intent.getIntExtra("NUMERO_QUESTAO", 0);
         int pontosTotais = intent.getIntExtra("PONTOS_TOTAIS", 0);
         int vidas = intent.getIntExtra("VIDAS", 0);
-        String username = getIntent().getStringExtra("USERNAME");
+
         textoResultado.toString().toUpperCase();
 
         if (numeroQuestao > 9) { //Layout para caso voce vença
 
             textoResultado.setText("Você Venceu!");
-            textoUsername.setText("Parabéns, Você terminou com " + vidas + " vida(s) restante(s) \n e " + pontosTotais + " pontos!");
-            Log.d("menuJogo", "Username: " + username);
+            textoUsername.setText("Parabéns, " + username + "!\n" + "Você terminou com " + vidas + " vida(s) restante(s) \n e " + pontosTotais + " pontos!");
+
 
         }
         else {
             textoResultado.setText("Você Perdeu!");
-            textoUsername.setText("Que pena, Você fez " + pontosTotais + " pontos...");
-            Log.d("menuJogo", "Username: " + username);
+            textoUsername.setText("Que pena, " + username + "\nVocê fez " + pontosTotais + " pontos...");
         }
 
         btnTelaInicial.setOnClickListener(v -> {

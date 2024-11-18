@@ -19,7 +19,7 @@
         android:textSize="60sp"
         android:gravity="center"
         android:fontFamily="sans-serif-medium"
-        android:text="QuizzODS" />
+        android:text="Quizzer" />
 
     <ImageView
         android:id="@+id/logoJogo"
