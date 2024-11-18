@@ -35,7 +35,7 @@ Bora jogar 🎮
 - <strong>SQLite</strong>: Banco de dados relacional utilizado para armazenar informações dos usuários, como <code>username</code>, <code>email</code> e <code>senha</code> (armazenada de forma segura com hash e salt).
 
 ### <small>Back-End:</small>
-- <strong>Node.js + Express</strong>: Servidor que gerencia as rotas da API para cadastro, login e deleção de usuários.
+- <strong>Node.js + Express</strong>: Servidor que gerencia as rotas da API para cadastro, login.
 - <strong>Hashing de Senha</strong>: Senhas dos usuários são armazenadas de maneira segura, utilizando técnicas de <strong>hash</strong> e <strong>salt</strong>.
 - <strong>SQLite</strong>: Responsável por persistir as informações dos usuários no banco de dados.
 
@@ -48,6 +48,10 @@ Bora jogar 🎮
 2. O servidor valida as informações e interage com o banco de dados para garantir a integridade dos dados.
 3. As senhas dos usuários são armazenadas de forma segura utilizando hash e salt.
 4. O cliente recebe a resposta do servidor informando o sucesso ou erro do login ou cadastro.
+
+### <small> Forms: </small>
+- O formulário é utilizado quando o usuário decide excluir seus dados do aplicativo.
+- No campo de "Alterar Dados", o usuário é direcionado para o formulário, onde pode realizar a exclusão de sua conta.
 <br><br>
 ## 🛠 Estrutura de pastas
 
