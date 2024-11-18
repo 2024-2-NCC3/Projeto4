@@ -32,7 +32,7 @@ Bora jogar 🎮
 ## Estruturas de Dados Utilizadas no Aplicativo
 
 ### Banco de Dados:
-- <strong>SQLite</strong>: Banco de dados relacional utilizado para armazenar informações dos usuários, como <code>username</code>, <code>email</code> e <code>senha</code> (armazenada de forma segura com hash e salt).
+- <strong>SQLite</strong>: Banco de dados relacional utilizado para armazenar informações dos usuários, como <code>username</code>, <code>email</code> e <code>senha</code>
 
 ### <small>Back-End:</small>
 - <strong>Node.js + Express</strong>: Servidor que gerencia as rotas da API para cadastro, login.
