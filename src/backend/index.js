@@ -78,11 +78,17 @@ app.post("/login", (req, res) => {
         // Gera o hash da senha usando o salt armazenado
         const passwordHashed = hashedPassword(password, row.salt);
         console.log("Password hash fornecido:", passwordHashed);
+        console.log("Password hash fornecido:", passwordHashed);
+        console.log("Password hash esperado:", row.password); // Para comparação direta
 
         // Compara o hash da senha fornecida com o hash armazenado
         if (passwordHashed === row.password) {
           console.log("Usuário encontrado e senha válida");
-          return res.json({ message: "Login bem-sucedido,", salt: row.salt });
+          return res.json({
+            message: "Login bem-sucedido",
+            salt: row.salt,
+            hashedPassword: row.password,
+          });
         } else {
           console.log("Senha incorreta");
           return res.status(401).json({ message: "Senha incorreta" });
