@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const sqlite3 = require("sqlite3").verbose();
 const cors = require("cors");
 const crypto = require("crypto");
+const { deletarUser } = require("./delete/userDelete"); // importa a função
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -26,7 +27,6 @@ banco.run(`CREATE TABLE IF NOT EXISTS users (
 
 // Função de Hashing com Salt
 function hashedPassword(password, salt) {
-  // Cria o hash usando o PBKDF2 com SHA-1
   const hash = crypto.pbkdf2Sync(password, salt, 65536, 24, "sha1");
   return hash.toString("base64"); // Retorna o hash em base64 para compatibilidade com o Android
 }
@@ -39,7 +39,6 @@ app.post("/criarUsuario", (req, res) => {
     return res.status(400).json({ message: "Necessário a senha" });
   }
 
-  // Gera o salt aleatório
   const salt = crypto.randomBytes(16).toString("base64");
   const passwordHashed = hashedPassword(password, salt);
 
@@ -58,7 +57,6 @@ app.post("/criarUsuario", (req, res) => {
 // Rota para Login (Autenticação)
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
-  console.log(req.body); // Verifique o que está sendo enviado
 
   if (!username || !password) {
     return res
@@ -75,24 +73,30 @@ app.post("/login", (req, res) => {
       }
 
       if (row) {
-        // Gera o hash da senha usando o salt armazenado
         const passwordHashed = hashedPassword(password, row.salt);
-        console.log("Password hash fornecido:", passwordHashed);
 
-        // Compara o hash da senha fornecida com o hash armazenado
         if (passwordHashed === row.password) {
-          console.log("Usuário encontrado e senha válida");
-          return res.json({ message: "Login bem-sucedido,", salt: row.salt });
+          return res.json({
+            message: "Login bem-sucedido",
+            salt: row.salt,
+            hashedPassword: row.password,
+          });
         } else {
-          console.log("Senha incorreta");
           return res.status(401).json({ message: "Senha incorreta" });
         }
       } else {
-        console.log("Usuário não encontrado");
         return res.status(401).json({ message: "Usuário não encontrado" });
       }
     }
   );
+});
+
+// Rota para deletar usuário
+app.post("/deletar", (req, res) => {
+  const { username, email } = req.body;
+
+  // Chama a função para deletar o usuário
+  deletarUser(username, email, res);
 });
 
 // Rota inicial
@@ -100,7 +104,7 @@ app.get("/", (req, res) => {
   res.send("Bem-vindo ao servidor!");
 });
 
-// Rota para testenp
+// Rota para teste
 app.get("/teste", (req, res) => {
   res.send("Passei por aqui!");
 });
